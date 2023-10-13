@@ -1,0 +1,15 @@
+version: "3"
+services:
+  matrix_miles:
+    container_name: matrix_miles
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    networks:
+      - matrix_miles_network
+
+networks:
+  matrix_miles_network:
+    name: matrix_miles_network
