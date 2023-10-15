@@ -36,3 +36,8 @@ RUN mkdir -p /root/.ssh \
 	&& ssh-keyscan github.com >> /root/.ssh/known_hosts
 
 RUN --mount=type=ssh HEX_HTTP_TIMEOUT=120 mix do deps.get, deps.compile 
+
+RUN mix escript.build \
+	&& chmod +x ./matrix_miles
+
+CMD ["./matrix_miles"]
