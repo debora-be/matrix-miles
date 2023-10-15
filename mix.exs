@@ -8,20 +8,21 @@ defmodule MatrixMiles.MixProject do
       elixir: "~> 1.15",
       start_permanent: Mix.env() == :prod,
       escript: escript_config(),
-      deps: deps()
+      deps: deps(),
+      elixirc_paths: elixirc_paths(Mix.env)
     ]
   end
 
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger]
+      extra_applications: [:ex_machina, :logger]
     ]
   end
 
   defp escript_config do
     [
-      main_module: MatrixMilesCli
+      main_module: MatrixMiles.CLI
     ]
   end
 
@@ -29,7 +30,11 @@ defmodule MatrixMiles.MixProject do
   defp deps do
     [
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
-      {:ex_machina, "~> 2.7", only: :test}
+      {:ex_machina, "~> 2.7.0"}
     ]
   end
+
+  # This makes sure your factory and any other modules in test/support are compiled when in the test environment.
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_), do: ["lib"]
 end
