@@ -2,7 +2,11 @@ defmodule MatrixMiles do
   @moduledoc """
   Main module to handle navigation of vehicles on the Martian terrain.
   """
+  alias MatrixMiles.Vehicles.{Vehicle, VehicleNavigation}
 
+  @doc """
+  Given the size of the platform and a list of vehicles with their initial positions and movements, returns the final position of each vehicle.
+  """
   @spec call({integer, integer}, list({{integer, integer, String.t()}, String.t()})) :: :ok
   def call(platform_size, vehicle_data) do
     vehicle_data

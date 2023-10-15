@@ -1,7 +1,8 @@
-defmodule Io do
+defmodule MatrixMiles.Stdins.Io do
   @moduledoc """
   Input/Output module for MatrixMiles application.
   """
+  alias MatrixMiles.Vehicles.Vehicle
 
   @doc """
   Starts the input/output interaction.
@@ -35,11 +36,15 @@ defmodule Io do
   defp get_number_of_vehicles do
     IO.puts("Enter the number of vehicles:")
 
-    "> "
-    |> IO.gets()
-    |> String.trim()
-    |> format()
+    case IO.gets("> ") do
+      :eof -> {:error, :unexpected_end_of_input}
+      input ->
+        input
+        |> String.trim()
+        |> format()
+    end
   end
+
 
   defp get_vehicle_data do
     IO.puts("Enter vehicle's initial position (for example, '1 2 N'):")

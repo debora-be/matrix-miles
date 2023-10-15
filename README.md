@@ -1,73 +1,69 @@
-Certainly! Here's a README for your project:
+Certainly! Here's a toned-down and professional version of your README:
 
 ---
 
-# MatrixMiles
+# MatrixMiles: Advanced Navigation for Martian Vehicles
 
 ## Overview
 
-MatrixMiles is a navigation simulation project designed to handle the navigation of vehicles on the Martian terrain. Given an initial position and a series of movements, the application calculates and displays the final position of each vehicle on the matrix.
-
-The vehicles move according to cardinal directions (N, S, E, W) or their Portuguese equivalents (N, S, L, O). The movement logic takes into account boundary constraints, ensuring vehicles don't go beyond the provided matrix size.
+MatrixMiles provides a reliable navigation simulation platform, meticulously designed for vehicles navigating the Martian terrain. The system ensures safe and accurate travel from points like Olympus Mons to Valles Marineris. While terrestrial vehicles may rely on GPS, vehicles on Mars can trust MatrixMiles for their journeying needs.
 
 ## Features
-- Simulation of multiple vehicles' movements on a specified matrix.
-- Boundary constraints to ensure vehicles remain within the matrix.
-- Support for both English and Portuguese cardinal directions.
-- Dockerized setup for easy environment management.
 
-## Building and Running
+**Matrix Navigation**: Navigate Mars with precision, following a clear matrix-based system.
+**Boundary Enforcement**: Our system ensures vehicles remain within the set terrain, preventing potential mishaps.
+**Language Support**: MatrixMiles is adaptable to both English and Portuguese navigation commands.
+**Docker Integration**: Utilize our dockerized environment for smooth deployment and running of the application.
+**Auto-Startup**: The application initializes automatically upon the start of the Docker container.
 
-### Prerequisites:
-Ensure you have [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) installed on your system.
+## Setup and Running
 
-### Steps:
-1. Clone the repository:
+### Prerequisites
+
+Ensure you have:
+
+- Docker
+- Docker Compose
+
+### Steps to Run
+
+1. **Clone and Navigate to Repository**:
 
    ```bash
-   git clone [repository_url] matrix_miles
+   git clone git@github.com:debora-be/matrix-miles.git
    cd matrix_miles
    ```
 
-2. Build the Docker environment:
+2. **Build Using Docker**:
 
    ```bash
-   docker-compose build
+   docker compose build
    ```
 
-3. Run the Docker container:
+3. **Run the Application**:
 
    ```bash
-   docker-compose run --rm matrix_miles ash
+   docker compose run --rm matrix_miles
    ```
 
-Once inside the container, you can interact with the system using the Elixir REPL (`iex`) and run the program with the appropriate commands.
+Upon startup, simply follow the on-screen instructions to input vehicle positions and navigate the Mars terrain.
+
+## Usage
+
+Once the system is up:
+
+1. Define the terrain matrix (e.g., `5 5`).
+2. Specify the number of vehicles.
+3. For each vehicle, provide its initial position (e.g., `1 2 N`) and navigation instructions (e.g., `EMEMEMEMM`).
+
+MatrixMiles will then compute and display the final positions of the vehicles based on the provided instructions.
 
 ## Testing
 
-Inside the Docker container, run:
+To run tests within the Docker environment, use:
 
 ```bash
 mix test
 ```
 
-This will execute all test cases and provide an output of the results.
-
-## Usage
-
-Inside the Docker container, and after starting the `iex` session with `iex -S mix`, you can navigate vehicles as follows:
-
-```elixir
-MatrixMiles.call({5, 5}, 
-  [
-    {%Vehicle{x: 1, y: 2, direction: "N"}, "EMEMEMEMM"},
-    {%Vehicle{x: 3, y: 3, direction: "L"}, "MMDMMDMDDM"}
-  ]
-)
-```
-
-This will output the final positions of the vehicles after executing the movements.
-
-## Contributing
-
-Pull requests are welcome! For major changes, please open an issue first to discuss the changes you'd like to make.
+This ensures that the navigation protocols are functioning as expected, safeguarding against potential navigation errors.
