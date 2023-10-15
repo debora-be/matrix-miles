@@ -1,18 +1,17 @@
 defmodule MatrixMiles do
-  @moduledoc """
-  Documentation for `MatrixMiles`.
-  """
+  def navigate(pid, start_position, movements) do
+    MissionControl.navigate(pid, start_position, movements)
+  end
 
-  @doc """
-  Hello world.
+  def start_and_navigate(platform_size, vehicle_positions, _commands) do
+    {:ok, pid} = MissionControl.start_link(platform_size)
 
-  ## Examples
+    results = Enum.map(vehicle_positions, fn {position, command} ->
+      navigate(pid, position, String.split(command, "", trim: true))
+    end)
 
-      iex> MatrixMiles.hello()
-      :world
-
-  """
-  def hello do
-    :world
+    Enum.each(results, fn %Vehicle{x: x, y: y, direction: direction} ->
+      IO.puts("#{x} #{y} #{direction}")
+    end)
   end
 end
