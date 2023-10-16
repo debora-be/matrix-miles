@@ -11,8 +11,15 @@ MatrixMiles provides a reliable navigation simulation platform, meticulously des
 * **Language Support**: MatrixMiles is adaptable to both English and Portuguese navigation commands.
 * **Docker Integration**: Utilize our dockerized environment for smooth deployment and running of the application.
 * **Auto-Startup**: The application initializes automatically upon the start of the Docker container.
+* **Fly.io Deployment**: Access the application seamlessly via Fly.io.
 
 ## Setup and Running
+
+*Option 1: Via Fly.io*
+
+Visit `https://matrixmiles.fly.dev` to access the MatrixMiles application directly through browser.
+
+*Option 2: Using Docker*
 
 ### Prerequisites
 
