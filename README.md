@@ -71,7 +71,7 @@ docker compose run --rm matrix_miles mix test
 Details on testing coverage can be found by running:
 
 ```bash
-docker compose run --rm matrix_miles mix test --coveralls
+docker compose run --rm matrix_miles mix coveralls
 ```
 
 This ensures that the navigation protocols are functioning as expected, safeguarding against potential navigation errors.
