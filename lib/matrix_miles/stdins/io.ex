@@ -2,6 +2,7 @@ defmodule MatrixMiles.Stdins.Io do
   @moduledoc """
   Input/Output module for MatrixMiles application.
   """
+  alias MatrixMiles.Error
   alias MatrixMiles.Vehicles.Vehicle
 
   @doc """
@@ -11,14 +12,21 @@ defmodule MatrixMiles.Stdins.Io do
   def start do
     IO.puts("Welcome to the MatrixMiles Martian Vehicle Navigation System!")
 
-    platform_size = get_platform_size()
-    number_of_vehicles = get_number_of_vehicles()
+    with platform_size <- get_platform_size(),
+         number_of_vehicles <- get_number_of_vehicles(),
+         vehicle_data <- Enum.map(1..number_of_vehicles, fn _ ->
+            get_vehicle_data()
+          end) do
+      MatrixMiles.call(platform_size, vehicle_data)
+    else
+      {:error, :unexpected_end_of_input} ->
+        IO.puts("Unexpected end of input. Please try again.")
+        start()
 
-    vehicle_data = Enum.map(1..number_of_vehicles, fn _ ->
-      get_vehicle_data()
-    end)
-
-    MatrixMiles.call(platform_size, vehicle_data)
+      {:error, :invalid_input} ->
+        IO.puts("Invalid input. Please try again.")
+        start()
+    end
   end
 
   defp get_platform_size do

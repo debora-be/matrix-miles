@@ -6,11 +6,11 @@ MatrixMiles provides a reliable navigation simulation platform, meticulously des
 
 ## Features
 
-**Matrix Navigation**: Navigate Mars with precision, following a clear matrix-based system.
-**Boundary Enforcement**: Our system ensures vehicles remain within the set terrain, preventing potential mishaps.
-**Language Support**: MatrixMiles is adaptable to both English and Portuguese navigation commands.
-**Docker Integration**: Utilize our dockerized environment for smooth deployment and running of the application.
-**Auto-Startup**: The application initializes automatically upon the start of the Docker container.
+* **Matrix Navigation**: Navigate Mars with precision, following a clear matrix-based system.
+* **Boundary Enforcement**: Our system ensures vehicles remain within the set terrain, preventing potential mishaps.
+* **Language Support**: MatrixMiles is adaptable to both English and Portuguese navigation commands.
+* **Docker Integration**: Utilize our dockerized environment for smooth deployment and running of the application.
+* **Auto-Startup**: The application initializes automatically upon the start of the Docker container.
 
 ## Setup and Running
 
