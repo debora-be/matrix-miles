@@ -1,12 +1,8 @@
-Certainly! Here's a toned-down and professional version of your README:
-
----
-
 # MatrixMiles: Advanced Navigation for Martian Vehicles
 
 ## Overview
 
-MatrixMiles provides a reliable navigation simulation platform, meticulously designed for vehicles navigating the Martian terrain. The system ensures safe and accurate travel from points like Olympus Mons to Valles Marineris. While terrestrial vehicles may rely on GPS, vehicles on Mars can trust MatrixMiles for their journeying needs.
+MatrixMiles provides a reliable navigation simulation platform, meticulously designed for vehicles navigating the Martian terrain. 
 
 ## Features
 
@@ -27,20 +23,20 @@ Ensure you have:
 
 ### Steps to Run
 
-1. **Clone and Navigate to Repository**:
+1. **Clone and navigate to repository**:
 
    ```bash
    git clone git@github.com:debora-be/matrix-miles.git
    cd matrix_miles
    ```
 
-2. **Build Using Docker**:
+2. **Build using Docker**:
 
    ```bash
    docker compose build
    ```
 
-3. **Run the Application**:
+3. **Run the application**:
 
    ```bash
    docker compose run --rm matrix_miles
@@ -48,22 +44,28 @@ Ensure you have:
 
 Upon startup, simply follow the on-screen instructions to input vehicle positions and navigate the Mars terrain.
 
-## Usage
+## Running the vehicles on Mars
 
 Once the system is up:
 
-1. Define the terrain matrix (e.g., `5 5`).
+1. Define the terrain area (for example, `5 5`).
 2. Specify the number of vehicles.
-3. For each vehicle, provide its initial position (e.g., `1 2 N`) and navigation instructions (e.g., `EMEMEMEMM`).
+3. For each vehicle, provide its initial position (for example, `1 2 N`) and navigation instructions (for example, `EMEMEMEMM`).
 
-MatrixMiles will then compute and display the final positions of the vehicles based on the provided instructions.
+MatrixMiles will then compute and display the final positions of the vehicles based on your commands.
+
+Expected output:
+
+```bash
+1 3 N
+```
 
 ## Testing
 
 To run tests within the Docker environment, use:
 
 ```bash
-mix test
+docker compose run --rm matrix_miles mix test
 ```
 
 This ensures that the navigation protocols are functioning as expected, safeguarding against potential navigation errors.
