@@ -23,9 +23,16 @@ defmodule MatrixMiles do
   def navigate_vehicle({%Vehicle{} = vehicle, movements}, platform_size) do
     movements
     |> clear_movements()
-    |> Enum.reduce(vehicle, fn
-      "M", veh -> VehicleNavigation.move(veh, platform_size)
-      turn, veh -> %Vehicle{veh | direction: VehicleNavigation.turn(turn, veh.direction)}
+    |> Enum.reduce_while(vehicle, fn
+      "M", veh ->
+        case VehicleNavigation.move(veh, platform_size) do
+          {:error, error_msg} ->
+            IO.puts(error_msg)
+            {:halt, veh}
+          veh -> {:cont, veh}
+        end
+
+      turn, veh -> {:cont, %Vehicle{veh | direction: VehicleNavigation.turn(turn, veh.direction)}}
     end)
   end
 
