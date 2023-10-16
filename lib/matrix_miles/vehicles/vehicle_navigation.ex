@@ -2,7 +2,6 @@ defmodule MatrixMiles.Vehicles.VehicleNavigation do
   @moduledoc """
   Controls the vehicle's movements and directions on the Martian terrain.
   """
-  alias MatrixMiles.Error
   alias MatrixMiles.Vehicles.Vehicle
 
   @turns %{
@@ -24,10 +23,10 @@ defmodule MatrixMiles.Vehicles.VehicleNavigation do
     {"R", "W"} => "N"
   }
 
-  def turn(nil, _current_direction), do: %MatrixMiles.Error{status: :invalid_direction, result: "Invalid turn or current direction"}
-  def turn("", _current_direction), do: %MatrixMiles.Error{status: :invalid_direction, result: "Invalid turn or current direction"}
+  def turn(nil, _current_direction), do: {:error, "Invalid direction"}
+  def turn("", _current_direction), do: {:error, "Invalid direction"}
   def turn(direction, current_direction) when is_binary(direction) and is_binary(current_direction) do
-    Map.get(@turns, {direction, current_direction}, %MatrixMiles.Error{status: :invalid_direction, result: "Invalid turn or current direction"})
+    Map.get(@turns, {direction, current_direction}, {:error, "Invalid direction"})
   end
 
 
@@ -44,13 +43,13 @@ defmodule MatrixMiles.Vehicles.VehicleNavigation do
       {"E", x, _} when x < max_x -> %Vehicle{vehicle | x: x + 1}
       {"O", x, _} when x > 0 -> %Vehicle{vehicle | x: x - 1}
       {"W", x, _} when x > 0 -> %Vehicle{vehicle | x: x - 1}
-      {"N", _, y} when y == max_y -> Error.build_north_boundary_error()
-      {"S", _, y} when y == 0 -> Error.build_south_boundary_error()
-      {"L", x, _} when x == max_x -> Error.build_east_boundary_error()
-      {"E", x, _} when x == max_x -> Error.build_east_boundary_error()
-      {"O", x, _} when x == 0 -> Error.build_west_boundary_error()
-      {"W", x, _} when x == 0 -> Error.build_west_boundary_error()
-      _ -> Error.build_invalid_movement_direction_error()
+      {"N", _, y} when y == max_y -> {:error, "Vehicle at North boundary, can't move North"}
+      {"S", _, y} when y == 0 -> {:error, "Vehicle at South boundary, can't move South"}
+      {"L", x, _} when x == max_x -> {:error, "Vehicle at East boundary, can't move East"}
+      {"E", x, _} when x == max_x -> {:error, "Vehicle at East boundary, can't move East"}
+      {"O", x, _} when x == 0 -> {:error, "Vehicle at West boundary, can't move West"}
+      {"W", x, _} when x == 0 -> {:error, "Vehicle at West boundary, can't move West"}
+      _ -> {:error, "Invalid movement direction"}
     end
   end
 end
